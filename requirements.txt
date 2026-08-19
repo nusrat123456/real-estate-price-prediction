@@ -7,3 +7,4 @@ scikit-learn==1.6.1
 joblib==1.5.2
 gunicorn==23.0.0
 whitenoise==6.9.0
+djangorestframework-simplejwt==5.3.1
