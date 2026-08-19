@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Real Estate Price Prediction</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+<div class="left">
+
+<div class="tag">Machine Learning</div>
+
+<h1>
+Real Estate Price
+<span>Prediction</span>
+</h1>
+
+<p>
+Predict house prices using Machine Learning and Django REST API.
+This project combines data preprocessing, model training and a
+modern web interface for real-time predictions.
+</p>
+
+<div class="features">
+<div>✓ Machine Learning</div>
+<div>✓ REST API</div>
+
+<div>✓ Authentication</div>
+<div>✓ SQL Database</div>
+
+<div>✓ Docker Ready</div>
+<div>✓ Power BI</div>
+</div>
+
+<div class="tech">
+<span>Python</span>
+<span>Django</span>
+<span>Machine Learning</span>
+<span>SQL</span>
+<span>Docker</span>
+<span>Power BI</span>
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+</div>
+
+<div class="buttons">
+<a href="https://github.com/nusrat123456/real-estate-price-prediction"
+   target="_blank"
+   class="btn primary">
+   GitHub
+</a>
+<a href="http://127.0.0.1:8000/api/" target="_blank" class="btn secondary">
+Live Demo ↗
+</a>
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="hero-image">
+<img src="assets/house.png" alt="House">
+</div>
+
+<div class="card">
+
+<h2>Predict House Price</h2>
+
+<form id="predictionForm">
+
+<div class="input-box">
+<span>🏠</span>
+<input type="number" id="area" placeholder="Area (sqft)" required>
+</div>
+
+<div class="input-box">
+<span>🛏️</span>
+<input type="number" id="bedrooms" placeholder="Bedrooms" required>
+</div>
+
+<div class="input-box">
+<span>🚿</span>
+<input type="number" id="bathrooms" placeholder="Bathrooms" required>
+</div>
+
+<div class="input-box">
+<span>📍</span>
+<input type="text" id="location" placeholder="Location (e.g. Noida)" required>
+</div>
+
+<button id="predictBtn" type="submit">
+✨ Predict Price
+</button>
+
+</form>
+
+<div id="result">₹ --</div>
+
+</div>
+
+<div class="history-card">
+
+<h3>Recent Predictions</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Location</th>
+<th>Area</th>
+<th>Price</th>
+</tr>
+</thead>
+
+<tbody id="historyBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+  Built with ❤️ using Django REST API and Machine Learning |
+  <a href="https://github.com/nusrat123456/real-estate-price-prediction" target="_blank">
+    GitHub
+  </a>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
