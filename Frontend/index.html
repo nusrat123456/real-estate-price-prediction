@@ -2,94 +2,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Estate Price Prediction</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>Real Estate Price Prediction</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="header">
-            <img src="{% static 'assets/house.png' %}" alt="House" class="logo">
-            <h1>Real Estate Price Prediction</h1>
-            <p>Predict house prices using Machine Learning</p>
-        </div>
+<div class="left">
 
-        <div class="card">
-            <form id="predictionForm">
+<div class="tag">Machine Learning</div>
 
-                <div class="input-group">
-                    <label>Area (sq.ft)</label>
-                    <input type="number" id="area" placeholder="Enter Area" required>
-                </div>
+<h1>
+Real Estate Price
+<span>Prediction</span>
+</h1>
 
-                <div class="input-group">
-                    <label>Bedrooms</label>
-                    <input type="number" id="bedrooms" placeholder="Enter Bedrooms" required>
-                </div>
+<p>
+Predict house prices using Machine Learning and Django REST API.
+This project combines data preprocessing, model training and a
+modern web interface for real-time predictions.
+</p>
 
-                <div class="input-group">
-                    <label>Bathrooms</label>
-                    <input type="number" id="bathrooms" placeholder="Enter Bathrooms" required>
-                </div>
+<div class="features">
+<div>✓ Machine Learning</div>
+<div>✓ REST API</div>
 
-                <div class="input-group">
-                    <label>Location</label>
-                    <input type="text" id="location" placeholder="Enter Location" required>
-                </div>
+<div>✓ Authentication</div>
+<div>✓ SQL Database</div>
 
-                <button type="submit">Predict Price</button>
+<div>✓ Docker Ready</div>
+<div>✓ Power BI</div>
+</div>
 
-            </form>
+<div class="tech">
+<span>Python</span>
+<span>Django</span>
+<span>Machine Learning</span>
+<span>SQL</span>
+<span>Docker</span>
+<span>Power BI</span>
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+</div>
 
-            <div id="result"></div>
-        </div>
+<div class="buttons">
+<a href="https://github.com/nusrat123456/real-estate-price-prediction"
+   target="_blank"
+   class="btn primary">
+   GitHub
+</a>
 
-    </div>
+<a href="/api/" target="_blank" class="btn secondary">
+Live Demo ↗
+</a>
+</div>
 
-    <!-- JavaScript -->
-    <script src="{% static 'js/script.js' %}"></script>
+</div>
 
-    <script>
-        const form = document.getElementById("predictionForm");
-        const result = document.getElementById("result");
+<div class="right">
 
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
+<div class="hero-image">
+<img src="{% static 'assets/house.png' %}" alt="House">
+</div>
 
-            const data = {
-                area: document.getElementById("area").value,
-                bedrooms: document.getElementById("bedrooms").value,
-                bathrooms: document.getElementById("bathrooms").value,
-                location: document.getElementById("location").value
-            };
+<div class="card">
 
-            try {
-                const response = await fetch("/predictions/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                });
+<h2>Predict House Price</h2>
 
-                const output = await response.json();
+<form id="predictionForm">
 
-                if (response.ok) {
-                    result.innerHTML = `<h2>Predicted Price: ₹${output.predicted_price}</h2>`;
-                } else {
-                    result.innerHTML = `<p style="color:red;">${output.error || "Prediction failed."}</p>`;
-                }
+<div class="input-box">
+<span>🏠</span>
+<input type="number" id="area" placeholder="Area (sqft)" required>
+</div>
 
-            } catch (error) {
-                result.innerHTML = `<p style="color:red;">Server Error</p>`;
-            }
+<div class="input-box">
+<span>🛏️</span>
+<input type="number" id="bedrooms" placeholder="Bedrooms" required>
+</div>
+
+<div class="input-box">
+<span>🚿</span>
+<input type="number" id="bathrooms" placeholder="Bathrooms" required>
+</div>
+
+<div class="input-box">
+<span>📍</span>
+<input type="text" id="location" placeholder="Location (e.g. Noida)" required>
+</div>
+
+<button id="predictBtn" type="submit">
+✨ Predict Price
+</button>
+
+</form>
+
+<div id="result">₹ --</div>
+
+</div>
+
+<div class="history-card">
+
+<h3>Recent Predictions</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>Location</th>
+<th>Area</th>
+<th>Price</th>
+</tr>
+</thead>
+
+<tbody id="historyBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Built with ❤️ using Django REST API and Machine Learning |
+<a href="https://github.com/nusrat123456/real-estate-price-prediction" target="_blank">
+GitHub
+</a>
+</footer>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+<script>
+const form = document.getElementById("predictionForm");
+const result = document.getElementById("result");
+const historyBody = document.getElementById("historyBody");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+        area: Number(document.getElementById("area").value),
+        bedrooms: Number(document.getElementById("bedrooms").value),
+        bathrooms: Number(document.getElementById("bathrooms").value),
+        location: document.getElementById("location").value
+    };
+
+    try {
+        const response = await fetch("/predictions/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
         });
-    </script>
+
+        const output = await response.json();
+
+        if (response.ok) {
+            result.innerHTML = `₹ ${Number(output.predicted_price).toLocaleString("en-IN")}`;
+
+            historyBody.insertAdjacentHTML("afterbegin", `
+                <tr>
+                    <td>${data.location}</td>
+                    <td>${data.area}</td>
+                    <td>₹ ${Number(output.predicted_price).toLocaleString("en-IN")}</td>
+                </tr>
+            `);
+        } else {
+            result.innerHTML = output.error || "Prediction failed.";
+        }
+
+    } catch (err) {
+        result.innerHTML = "Server Error!";
+        console.error(err);
+    }
+});
+</script>
 
 </body>
 </html>
